@@ -3,7 +3,6 @@
   <component name="dataSourceStorageLocal">
     <data-source name="Rails FastFacts: development" uuid="92bd2335-2907-40c8-869b-ce0b1fb312cf">
       <user-name>saasbook</user-name>
-      <user-password>dfd9dfcbdfcbdfd9dfc8dfc5dfc5dfc1</user-password>
       <schema-pattern>fastfacts_development.pg_catalog fastfacts_development.public</schema-pattern>
       <default-schemas>fastfacts_development.pg_catalog fastfacts_development.public</default-schemas>
     </data-source>
@@ -12,7 +11,6 @@
     </data-source>
     <data-source name="Rails FastFacts: production" uuid="ad0985f6-83ac-4a49-8704-0cb1c2f4710e">
       <first-sync>true</first-sync>
-      <user-name>saasbook</user-name>
     </data-source>
   </component>
 </project>
