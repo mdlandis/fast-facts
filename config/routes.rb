@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
   authenticate :user do
     resources :facts, only: [:new, :create, :edit, :update, :destroy]
+    resources :tags, only: [:new, :create, :edit, :update, :destroy]
+    resources :sources, only: [:new, :create, :edit, :update, :destroy]
   end
   resources :facts, only: [:show, :index]
-
-  authenticate :user do
-    resources :tags, only: [:new, :create, :edit, :update, :destroy]
-  end
   resources :tags, only: [:show, :index]
+  resources :sources, only: [:show, :index]
 
+  # Removing hack post 'tags/new' => 'tags#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

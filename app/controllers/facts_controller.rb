@@ -40,6 +40,7 @@ class FactsController < ApplicationController
   # PATCH/PUT /facts/1
   # PATCH/PUT /facts/1.json
   def update
+    params[:product][:category_ids] ||= []
     respond_to do |format|
       if @fact.update(fact_params)
         format.html { redirect_to @fact, notice: 'Fact was successfully updated.' }
@@ -69,6 +70,10 @@ class FactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fact_params
-      params[:fact]
+      params.require(:fact).permit(
+          :fact_text,
+          :fact_notes,
+          {:tag_ids => []}
+      )
     end
 end

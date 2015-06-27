@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150622232146) do
+ActiveRecord::Schema.define(version: 20150627025124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,20 +21,31 @@ ActiveRecord::Schema.define(version: 20150622232146) do
     t.text     "notes"
     t.string   "entered_by"
     t.string   "last_modified_by"
-    t.string   "source_url"
-    t.string   "source_title"
-    t.string   "source_authors"
-    t.string   "source_date_published"
-    t.string   "original_source"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "source_id"
+  end
+
+  create_table "facts_tags", id: false, force: :cascade do |t|
+    t.integer "fact_id"
+    t.integer "tag_id"
+  end
+
+  add_index "facts_tags", ["fact_id"], name: "index_facts_tags_on_fact_id", using: :btree
+  add_index "facts_tags", ["tag_id"], name: "index_facts_tags_on_tag_id", using: :btree
+
+  create_table "sources", force: :cascade do |t|
+    t.string "url"
+    t.string "title"
+    t.string "authors"
+    t.string "date_published"
+    t.string "original_source"
   end
 
   create_table "tags", force: :cascade do |t|
     t.string   "tag_word"
-    t.string   "tag_category"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

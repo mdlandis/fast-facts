@@ -19,7 +19,7 @@ gem 'devise'
 
 gem 'omniauth'
 
-gem 'omniauth-google2'
+gem 'omniauth-google-oauth2'
 
 gem 'pg'
 

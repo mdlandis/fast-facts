@@ -12,6 +12,7 @@
   <tbody>
     <% @facts.each do |fact| %>
       <tr>
+        <td><%= fact.fact_text%></td>
         <td><%= link_to 'Show', fact %></td>
         <td><%= link_to 'Edit', edit_fact_path(fact) %></td>
         <td><%= link_to 'Destroy', fact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
