@@ -10,12 +10,27 @@ class SourcesController < ApplicationController
   # GET /sources/1
   # GET /sources/1.json
   def show
+    @source = Source.find(params[:id])
+
   end
 
   # GET /sources/new
   def new
     @source = Source.new
-    3.times { @source.facts.build}
+=begin
+    @fact1 = Fact.new
+    @fact1.fact_text = 'Fact1 text'
+    @fact1.notes = 'Fact1 notes'
+    @fact2 = Fact.new
+    @fact2.fact_text = 'Fact2 text'
+    @fact2.notes = 'Fact2 notes'
+    @fact3 = Fact.new
+    @fact3.fact_text = 'Fact3 text'
+    @fact3.notes = 'Fact3 notes'
+    @source.facts << @fact1
+    @source.facts << @fact2
+    @source.facts << @fact3
+=end
   end
 
   # GET /sources/1/edit
@@ -26,6 +41,7 @@ class SourcesController < ApplicationController
   # POST /sources.json
   def create
     @source = Source.new(source_params)
+
 
     respond_to do |format|
       if @source.save

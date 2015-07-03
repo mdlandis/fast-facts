@@ -1,26 +1,53 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Tags</h1>
-
-<table>
-  <thead>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>All Tags</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="wrapper" class="container">
+  <% if notice %>
+    <div class="well well-sm"><p id="notice"><%= notice %></p></div>
+  <% end %>
+  <h2>Tags</h2>
+  <table class="table">
+    <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>Tag Word</th>
+      <th>See this tag</th>
+      <th>Edit this tag</th>
+      <th>Delete this tag</th>
     </tr>
-  </thead>
+    </thead>
+    <tbody>
+        <% @tags.each do |tag| %>
+            <tr>
+              <td><kbd><%= tag.tag_word %></kbd></td>
+              <td><%= link_to 'Show', tag %></td>
+              <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
+              <td><%= link_to 'Delete', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+        <% end %>
+    </tbody>
+  </table>
+  <br>
 
-  <tbody>
-    <% @tags.each do |tag| %>
-      <tr>
-        <td><%= tag.tag_word %></td>
-        <td><%= link_to 'Show', tag %></td>
-        <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
-        <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <%= link_to 'New Tag', new_tag_path %>
+</div>
 
-<br>
 
-<%= link_to 'New Tag', new_tag_path %>
+
+
+</body>
+</html>
+
+
+
+
+
+
+

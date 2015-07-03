@@ -1458,6 +1458,7 @@
       <column name="last_modified_by" sqlType="varchar" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="created_at" sqlType="timestamp" precision="29" scale="6" nullable="true" jdbcType="93"/>
       <column name="updated_at" sqlType="timestamp" precision="29" scale="6" nullable="true" jdbcType="93"/>
+      <column name="source_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="facts_pkey" columns="id"/>
     </table>
     <table name="facts_id_seq" schema="public" catalog="fastfacts_development" type="SEQUENCE">

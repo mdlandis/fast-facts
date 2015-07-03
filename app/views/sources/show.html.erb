@@ -1,4 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+<p><%= @source.title %></p>
+<p><%= @source.url %></p>
+<p><%= @source.authors %></p>
+<p><%= @source.date_published %></p>
+<p><%= @source.original_source %></p>
+
+<% @source.facts.each do |fact| %>
+    <p><%= fact.fact_text %></p>
+    <% fact.tags.each do |tag|%>
+        <p><%= tag.tag_word %></p>
+    <% end %>
+<% end %>
+
 <%= link_to 'Edit', edit_source_path(@source) %> |
 <%= link_to 'Back', sources_path %>

@@ -1,17 +1,39 @@
-<h1>Editing Tag</h1>
 
-<%= form_for(@tag) do |f| %>
-    <div class="field">
-      <%= f.label :tag_word %><br>
-      <%= f.text_field :tag_word %>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Editing Tag</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="wrapper" class="container">
+  <% if notice %>
+      <div class="well well-sm"><p id="notice"><%= notice %></p></div>
+  <% end %>
+  <h1>Editing Tag #<%= @tag.id %></h1>
+  <%= form_for(@tag) do |f| %>
+      <div class="field">
+        <%= f.label :tag_word %><br>
+        <%= f.text_field :tag_word %>
+      </div>
 
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
 
 
-<% end %>
+  <% end %>
 
-<%= link_to 'Show', @tag %> |
-<%= link_to 'Back', tags_path %>
+  <%= link_to 'Show', @tag %> |
+  <%= link_to 'Back', tags_path %>
+</div>
+
+
+
+
+</body>
+</html>

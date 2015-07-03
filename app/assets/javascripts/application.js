@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require angular
 //= require_tree .
 
 function remove_fields (link) {
