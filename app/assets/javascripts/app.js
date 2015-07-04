@@ -1,4 +1,5 @@
 angular.module('fastFacts', [])
     .controller('ItemController', ['$scope', function($scope) {
-        $scope.items = items;
+        $scope.facts = facts;
+        $scope.fact_tags = fact_tags;
     }]);

@@ -15,7 +15,8 @@
 
     <body ng-controller="ItemController">
     <%= javascript_tag do %>
-        var items = <%= @source.facts.to_json.html_safe %>;
+        var facts = <%= @source.facts.to_json.html_safe %>;
+        var fact_tags = <%= Array.new.to_json.html_safe %>;
     <% end %>
     <%= form_for @source do |f| %>
 
@@ -57,28 +58,41 @@
           <th></th>
           <th>Fact</th>
           <th>Notes</th>
+          <th>Tags</th>
         </tr>
 
-        <tr ng-repeat="item in items track by $index" ng-if="!item.removed">
-          <td><i class="glyphicon glyphicon-minus" ng-click="item.removed = true"></i></td>
-          <td>{{items.length}}</td>
-          <td>[{{$index + 1}}]</td>
+        <tr ng-repeat="fact in facts track by $index" ng-if="!fact.removed">
+          <td><i class="glyphicon glyphicon-minus" ng-click="fact.removed = true"></i></td>
           <td>
-              <input name="source[facts_attributes][$index][id]" type="hidden" ng-value="item.id" ng-if="item.id"/>
-              <input name="source[facts_attributes][$index][fact_text]" type="text" ng-model="item.fact_text" />
+              <input name="source[facts_attributes][{{$index}}][id]" type="hidden" ng-value="fact.id" ng-if="fact.id"/>
+              <input name="source[facts_attributes][{{$index}}][fact_text]" type="text" ng-model="fact.fact_text" />
           </td>
-          <td><input name="source[facts_attributes][$index][notes]" type="text" ng-model="item.notes" /></td>
+          <td>
+            <input name="source[facts_attributes][{{$index}}][notes]" type="text" ng-model="fact.notes" />
+          </td>
+          <td><i class="glyphicon glyphicon-plus" ng-click="fact_tags.push({})"> Tag</i>
+          </td>
+
+          <td>{{fact_tags}}, {{fact_tags.length}}</td>
+          <td>
+            <tr ng-repeat="fact_tag in fact_tags track by $index">
+              <td>
+                 Foo
+               </td>
+            </tr>
+          </td>
+
         </tr>
         <tr>
           <td colspan="3">
-            <i class="glyphicon glyphicon-plus" ng-click="items.push({})"> Add a fact for this source</i>
+            <i class="glyphicon glyphicon-plus" ng-click="facts.push({})"> Fact</i>
           </td>
         </tr>
       </table>
 
-      <div style="display: none" ng-repeat="item in items track by $index"
-           ng-if="item.removed && item.id">
-        <input type="hidden" name="source[facts_attributes][$index][id]" ng-value="item.id"/>
+      <div style="display: none" ng-repeat="fact in fact track by $index"
+           ng-if="fact.removed && fact.id">
+        <input type="hidden" name="source[facts_attributes][$index][id]" ng-value="fact.id"/>
         <input type="hidden" name="sources[facts_attributes][$index][_destroy]" value="1"/>
       </div>
       <br>

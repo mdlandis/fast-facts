@@ -11,12 +11,12 @@ class SourcesController < ApplicationController
   # GET /sources/1.json
   def show
     @source = Source.find(params[:id])
-
   end
 
   # GET /sources/new
   def new
     @source = Source.new
+    @tags = Tag.all
 =begin
     @fact1 = Fact.new
     @fact1.fact_text = 'Fact1 text'
@@ -91,7 +91,8 @@ class SourcesController < ApplicationController
           :title,
           :authors,
           :date_published,
-          :original_source
+          :original_source,
+          facts_attributes: [:id, :fact_text, :notes, :_destroy]
       )
     end
 end

@@ -7,12 +7,12 @@
       <default-schemas>fastfacts_development.pg_catalog fastfacts_development.public</default-schemas>
     </data-source>
     <data-source name="Rails FastFacts: test" uuid="a04f41e8-0003-4b81-a6b3-b0b7faa24d5e">
-      <first-sync>true</first-sync>
+      <user-name>saasbook</user-name>
+      <schema-pattern>fastfacts_test.pg_catalog fastfacts_test.public</schema-pattern>
+      <default-schemas>fastfacts_test.pg_catalog fastfacts_test.public</default-schemas>
     </data-source>
     <data-source name="Rails FastFacts: production" uuid="ad0985f6-83ac-4a49-8704-0cb1c2f4710e">
       <first-sync>true</first-sync>
-      <user-name>saasbook</user-name>
-      <user-password>dfd9dfcbdfcbdfd9dfc8dfc5dfc5dfc1</user-password>
     </data-source>
   </component>
 </project>
