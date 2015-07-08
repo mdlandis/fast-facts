@@ -16,21 +16,10 @@ class SourcesController < ApplicationController
   # GET /sources/new
   def new
     @source = Source.new
-    @tags = Tag.all
-=begin
-    @fact1 = Fact.new
-    @fact1.fact_text = 'Fact1 text'
-    @fact1.notes = 'Fact1 notes'
-    @fact2 = Fact.new
-    @fact2.fact_text = 'Fact2 text'
-    @fact2.notes = 'Fact2 notes'
-    @fact3 = Fact.new
-    @fact3.fact_text = 'Fact3 text'
-    @fact3.notes = 'Fact3 notes'
-    @source.facts << @fact1
-    @source.facts << @fact2
-    @source.facts << @fact3
-=end
+    3.times do
+      fact = @source.facts.build
+      4.times { fact.tags.build }
+    end
   end
 
   # GET /sources/1/edit
@@ -92,7 +81,7 @@ class SourcesController < ApplicationController
           :authors,
           :date_published,
           :original_source,
-          facts_attributes: [:id, :fact_text, :notes, :_destroy]
+          facts_attributes: [:fact_text, :notes, tags_attributes: [:tag_word]]
       )
     end
 end

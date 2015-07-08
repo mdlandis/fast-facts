@@ -1,17 +1,20 @@
-<p class=""fields>
+<p class="fields">
 
   <%= f.label :fact_text, "Fact" %><br />
   <%= f.text_area :fact_text %>
+  <br>
 
   <%= f.label :notes, "Notes" %><br />
   <%= f.text_area :notes %>
 
-  Tags:
-
-
-
+  <br>
 
   <%= f.hidden_field :_destroy %>
-  <%# link_to_function "remove", "remove_fields(this)" %>
+  <%= link_to "remove", "javascript:void(0);", :id=>"remove_link" %>
+
+  <%= f.fields_for :tags do |builder| %>
+      <%= render partial: 'tag_fields', locals: { f: builder } %>
+  <% end %>
 
 </p>
+
