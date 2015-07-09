@@ -16,10 +16,6 @@ class SourcesController < ApplicationController
   # GET /sources/new
   def new
     @source = Source.new
-    3.times do
-      fact = @source.facts.build
-      4.times { fact.tags.build }
-    end
   end
 
   # GET /sources/1/edit
@@ -81,7 +77,7 @@ class SourcesController < ApplicationController
           :authors,
           :date_published,
           :original_source,
-          facts_attributes: [:fact_text, :notes, tags_attributes: [:tag_word]]
+          facts_attributes: [:fact_text, tags_attributes: [:tag_word]]
       )
     end
 end

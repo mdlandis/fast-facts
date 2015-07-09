@@ -23,6 +23,7 @@ gem 'omniauth-google-oauth2'
 
 gem 'pg'
 
+gem 'cocoon'
 
 
 # Use jquery as the JavaScript library

@@ -52,9 +52,10 @@
       <%= f.select :original_source, Source::ORIG_SOURCE_OPTIONS.map { |s| "#{s}" } %>
     </p>
 
-    <%= f.fields_for :facts do |builder| %>
-        <%= render partial: 'fact_fields', locals: { f: builder } %>
+    <%= f.fields_for :facts do |fact| %>
+        <%= render 'fact_fields', f: fact  %>
     <% end %>
+    <%= link_to_add_association 'add fact', f, :facts %>
     <br>
     <p><%= f.submit %></p>
 <% end %>
