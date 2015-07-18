@@ -25,6 +25,8 @@ gem 'pg'
 
 gem 'cocoon'
 
+gem 'bootstrap-typeahead-rails'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

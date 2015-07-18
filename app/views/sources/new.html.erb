@@ -1,4 +1,3 @@
-<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,56 +5,74 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link href="http://aehlke.github.com/tag-it/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
 </head>
-<div id="wrapper" class="container">
-    <h1>Fact Entry</h1>
-    <hr>
-    <h4>Enter Source Info</h4>
-
-    <body ng-controller="ItemController">
-    <%= javascript_tag do %>
-        var facts = <%= @source.facts.to_json.html_safe %>;
-        var fact_tags = <%= Array.new.to_json.html_safe %>;
-    <% end %>
+<body>
 
 
-    <%= link_to 'Back', sources_path %>
+    <div id="wrapper" class="container">
 
-    </body>
-</div>-->
-<%= form_for @source do |f| %>
+        <h1>Fact Entry</h1>
+        <hr>
+        <h4>Enter Source Info</h4>
 
-    <p>
-      <%= f.label :url %>
-      <%= f.text_field :url %>
-    </p>
 
-    <p>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-    </p>
 
-    <p>
-      <%= f.label :authors %>
-      <%= f.text_field :authors %>
-    </p>
 
-    <p>
-      <%= f.label :date_published %>
-      <%= f.date_select :date_published, {:start_year => 1970, :end_year => Time.now.year} %>
-    </p>
 
-    <p>
-      <%= f.label :original_source %>
-      <%= f.select :original_source, Source::ORIG_SOURCE_OPTIONS.map { |s| "#{s}" } %>
-    </p>
+      <%= form_for @source do |f| %>
 
-    <%= f.fields_for :facts do |fact| %>
-        <%= render 'fact_fields', f: fact  %>
-    <% end %>
-    <%= link_to_add_association 'add fact', f, :facts %>
-    <br>
-    <p><%= f.submit %></p>
-<% end %>
+        <p>
+          <%= f.label :url %>
+          <%= f.text_field :url %>
+        </p>
+
+        <p>
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        </p>
+
+        <p>
+          <%= f.label :authors %>
+          <%= f.text_field :authors %>
+        </p>
+
+        <p>
+          <%= f.label :date_published %>
+          <%= f.text_field :date_published, :placeholder => "MM/DD/YYYY" %>
+        </p>
+
+        <p>
+          <%= f.label :original_source %>
+          <%= f.select :original_source, Source::ORIG_SOURCE_OPTIONS.map { |s| "#{s}" } %>
+        </p>
+
+        <hr>
+
+          <h4>Add facts to this source</h4>
+
+          <%= f.fields_for :facts do |fact| %>
+              <%= render 'fact_fields', f: fact  %>
+          <% end %>
+
+          <%= link_to_add_fields "Add Fact", f, :facts, class: "btn btn-sm btn-info" %>
+
+        <br>
+        <hr>
+        <p><%= f.submit %></p>
+      <% end %>
+
+      <%= link_to 'Back', sources_path %>
+
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <%= javascript_include_tag('tagit.js') %>
+
+
+
+</body>
+</html>

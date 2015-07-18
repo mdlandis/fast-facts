@@ -34,13 +34,21 @@
     <tr>
       <th>Fact</th>
       <th>Notes</th>
+      <th>Tags</th>
     </tr>
     </thead>
     <tbody>
-    <% @source.facts.each do |fact| %>
+    <% @source.facts.each_with_index do |fact, index| %>
         <tr>
           <td><p><%= fact.fact_text %></p></td>
           <td><p><%= fact.notes %></p></td>
+          <td>
+            <p>
+              <% @tags_list[index].each do |tag| %>
+                  <kbd><%= tag %></kbd>
+              <% end %>
+            </p>
+          </td>
         </tr>
     <% end %>
     </tbody>

@@ -1,26 +1,32 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Facts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div id="wrapper" class="container">
 
-  <tbody>
-    <% @facts.each do |fact| %>
-      <tr>
-        <td><%= fact.fact_text%></td>
-        <td><%= link_to 'Show', fact %></td>
-        <td><%= link_to 'Edit', edit_fact_path(fact) %></td>
-        <td><%= link_to 'Destroy', fact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <p id="notice"><%= notice %></p>
 
-<br>
+  <h1>Listing Facts</h1>
 
-<%= link_to 'New Fact', new_fact_path %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @facts.each do |fact| %>
+          <tr>
+            <td><%= fact.fact_text%></td>
+            <td><%= link_to 'Show', fact %></td>
+            <td><%= link_to 'Edit', edit_fact_path(fact) %></td>
+            <td><%= link_to 'Destroy', fact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Fact', new_fact_path %>
+
+</div>

@@ -1,20 +1,27 @@
-<p class="fields">
 
-  <%= f.label :fact_text, "Fact" %><br />
-  <%= f.text_area :fact_text %>
-  <br>
 
-  <%= f.label :notes, "Notes" %><br />
-  <%= f.text_area :notes %>
+    <fieldset>
+      <div class="well">
+          <%= f.label :fact_text, "Fact" %><br />
+          <%= f.text_area :fact_text, :cols => "100", :rows => "5" %><br />
 
-  <br>
+          <%= f.label :notes, "Notes" %><br />
+          <%= f.text_area :notes, :cols => "100", :rows => "3" %><br />
 
-  <%= f.hidden_field :_destroy %>
-  <%= link_to "remove", "javascript:void(0);", :id=>"remove_link" %>
+          <br />
 
-  <%= f.fields_for :tags do |tag| %>
-      <%= render 'tag_fields', f: tag  %>
-  <% end %>
-  <%= link_to_add_association 'add tag', f, :tags %>
-</p>
+
+          <%= f.fields_for :tags do |tag| %>
+              <%= render 'tag_fields', f: tag  %>
+          <% end %>
+
+
+          <%= link_to_add_fields "Add Tag", f, :tags, class: "btn btn-xs btn-info" %><br /><hr />
+
+          <%= f.hidden_field :_destroy %>
+          <%= link_to "Remove fact", "#", class: "remove_fields" %>
+
+      </div>
+    </fieldset>
+
 

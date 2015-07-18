@@ -1488,8 +1488,8 @@
       <column name="url" sqlType="varchar" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="title" sqlType="varchar" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="authors" sqlType="varchar" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="date_published" sqlType="varchar" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="original_source" sqlType="varchar" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
+      <column name="date_published" sqlType="date" precision="13" scale="0" nullable="true" jdbcType="91"/>
       <primary-key name="sources_pkey" columns="id"/>
     </table>
     <table name="sources_id_seq" schema="public" catalog="fastfacts_development" type="SEQUENCE">

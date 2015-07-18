@@ -11,11 +11,23 @@ class SourcesController < ApplicationController
   # GET /sources/1.json
   def show
     @source = Source.find(params[:id])
+    finallist = []
+    count = 0
+    @source.facts.each do |fact|
+      firstlist = []
+      fact.tags.each do |tag|
+        firstlist << tag.tag_word
+      end
+      finallist[count] = firstlist
+      count = count + 1
+    end
+    @tags_list = finallist
   end
 
   # GET /sources/new
   def new
     @source = Source.new
+    @tags_list = Tag.all
   end
 
   # GET /sources/1/edit
@@ -25,7 +37,29 @@ class SourcesController < ApplicationController
   # POST /sources
   # POST /sources.json
   def create
-    @source = Source.new(source_params)
+    # @source = Source.new(source_params)
+    @source = Source.new
+    @source.url = source_params[:url]
+    @source.title = source_params[:title]
+    @source.authors = source_params[:authors]
+    @source.date_published = source_params[:date_published]
+    @source.original_source = source_params[:original_source]
+    facts = source_params[:facts_attributes]
+
+    Array(facts).each do |fact|
+      tempfact = Fact.new
+      tempfact.fact_text = fact[1][:fact_text]
+      tempfact.notes = fact[1][:notes]
+      tags = fact[1][:tags_attributes]
+      Array(tags).each do |tag|
+        temptag = Tag.find_by tag_word: tag[1][:tag_word]
+        tempfact.tags << temptag
+      end
+      @source.facts << tempfact
+    end
+
+
+
 
 
     respond_to do |format|
@@ -77,7 +111,7 @@ class SourcesController < ApplicationController
           :authors,
           :date_published,
           :original_source,
-          facts_attributes: [:fact_text, tags_attributes: [:tag_word]]
+          facts_attributes: [:fact_text, :notes, tags_attributes: [:tag_word]]
       )
     end
 end
