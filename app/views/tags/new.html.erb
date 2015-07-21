@@ -1,20 +1,20 @@
 
 <body>
 
-<div id="wrapper" class="container">
-  <h1>New Tag</h1>
-  <%= form_for(@tag) do |f| %>
-      <div class="field">
-        <%= f.label :tag_word %><br>
-        <%= f.text_field :tag_word %>
-      </div>
 
-      <div class="actions">
-        <%= f.submit %>
-      </div>
+<h1>New Tag</h1>
+<%= form_for(@tag) do |f| %>
+  <div class="field">
+    <%= f.label :tag_word %><br>
+    <%= f.text_field :tag_word %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 
 
-      <%= link_to 'Back', tags_path %>
+  <%= link_to 'Back', tags_path %>
 
-  <% end %>
-</div>
+<% end %>
+

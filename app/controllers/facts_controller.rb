@@ -7,6 +7,10 @@ class FactsController < ApplicationController
     @facts = Fact.all
   end
 
+  def view
+
+  end
+
   # GET /facts/1
   # GET /facts/1.json
   def show

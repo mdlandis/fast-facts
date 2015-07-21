@@ -10,16 +10,16 @@
 </head>
 <body>
 
-<div id="wrapper" class="container">
-  <p id="notice"><%= notice %></p>
-  <h2>Tag #<%= @tag.id %></h2>
 
-    <p>Tag Word: <%= @tag.tag_word %></p>
+<p id="notice"><%= notice %></p>
+<h2>Tag #<%= @tag.id %></h2>
 
-  <br>
-  <%= link_to 'Edit', edit_tag_path(@tag) %> |
-  <%= link_to 'Back', tags_path %>
-</div>
+<p>Tag Word: <%= @tag.tag_word %></p>
+
+<br>
+<%= link_to 'Edit', edit_tag_path(@tag) %> |
+<%= link_to 'Back', tags_path %>
+
 
 
 

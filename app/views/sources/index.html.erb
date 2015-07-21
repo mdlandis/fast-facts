@@ -1,31 +1,31 @@
-<div id="wrapper" class="container">
-    <p id="notice"><%= notice %></p>
 
-    <h1>Listing Sources</h1>
+<p id="notice"><%= notice %></p>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th><strong>Title</strong></th>
-          <th>Show</th>
-          <th>Edit</th>
-          <th>Destroy</th>
-        </tr>
-      </thead>
+<h1>Listing Sources</h1>
 
-      <tbody>
-        <% @sources.each do |source| %>
-          <tr>
-            <td><strong><%= source.title %></strong></td>
-            <td><%= link_to 'Show', source %></td>
-            <td><%= link_to 'Edit', edit_source_path(source) %></td>
-            <td><%= link_to 'Destroy', source, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+<table class="table">
+  <thead>
+    <tr>
+      <th><strong>Title</strong></th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Destroy</th>
+    </tr>
+  </thead>
 
-    <br>
+  <tbody>
+    <% @sources.each do |source| %>
+      <tr>
+        <td><strong><%= source.title %></strong></td>
+        <td><%= link_to 'Show', source %></td>
+        <td><%= link_to 'Edit', edit_source_path(source) %></td>
+        <td><%= link_to 'Destroy', source, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-    <%= link_to 'New Source', new_source_path %>
-</div>
+<br>
+
+<%= link_to 'New Source', new_source_path %>
+

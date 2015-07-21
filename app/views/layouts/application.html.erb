@@ -11,10 +11,21 @@
 </head>
 <body>
 
-<%= render 'layouts/dashboard'  %>
+<% if user_signed_in? %>
 
-<%= yield %>
+    <%= render 'layouts/dashboard'  %>
 
+<% else %>
+
+    <%= render 'layouts/signin' %>
+
+<% end %>
+
+<div id="wrapper" class="container">
+
+    <%= yield %>
+
+</div>
 
 
 </body>

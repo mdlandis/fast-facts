@@ -1,38 +1,38 @@
-<div id="wrapper" class="container">
-    <h1>Editing Source</h1>
 
-    <%= form_for @source do |f| %>
+<h1>Editing Source</h1>
 
-        <p>
-          <%= f.label :url %>
-          <%= f.text_field :url %>
-        </p>
+<%= form_for @source do |f| %>
 
-        <p>
-          <%= f.label :title %>
-          <%= f.text_field :title %>
-        </p>
+    <p>
+      <%= f.label :url %>
+      <%= f.text_field :url %>
+    </p>
 
-        <p>
-          <%= f.label :authors %>
-          <%= f.text_field :authors %>
-        </p>
+    <p>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </p>
 
-        <p>
-          <%= f.label :date_published %>
-          <%= f.text_field :date_published, :placeholder => "MM/DD/YYYY" %>
-        </p>
+    <p>
+      <%= f.label :authors %>
+      <%= f.text_field :authors %>
+    </p>
 
-        <p>
-          <%= f.label :original_source %>
-          <%= f.select :original_source, Source::ORIG_SOURCE_OPTIONS.map { |s| "#{s}" } %>
-        </p>
+    <p>
+      <%= f.label :date_published %>
+      <%= f.text_field :date_published, :placeholder => "MM/DD/YYYY" %>
+    </p>
 
-        <p><%= f.submit %></p>
-    <% end %>
-  <%= link_to 'Show', @source %> |
-  <%= link_to 'Back', sources_path %>
-</div>
+    <p>
+      <%= f.label :original_source %>
+      <%= f.select :original_source, Source::ORIG_SOURCE_OPTIONS.map { |s| "#{s}" } %>
+    </p>
+
+    <p><%= f.submit %></p>
+<% end %>
+<%= link_to 'Show', @source %> |
+<%= link_to 'Back', sources_path %>
+
 
 
 

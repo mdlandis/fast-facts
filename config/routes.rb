@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :registrations => "my_devise/registrations" }
 
   authenticate :user do
     resources :facts, only: [:new, :create, :edit, :update, :destroy]
@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   resources :facts, only: [:show, :index]
   resources :tags, only: [:show, :index]
   resources :sources, only: [:show, :index]
+
+  get 'facts/view', :to => 'facts#view'
+
+  root 'facts#view'
 
   # Removing hack post 'tags/new' => 'tags#create'
 

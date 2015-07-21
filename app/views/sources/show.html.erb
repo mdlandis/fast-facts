@@ -14,49 +14,47 @@
 </head>
 <body>
 
-<div id="wrapper" class="container">
-  <% if notice %>
-      <div class="well well-sm"><p id="notice"><%= notice %></p></div>
-  <% end %>
-  <h4>All of the facts were entered with the following source information:</h4>
 
-  <p><strong>Title:</strong> <%= @source.title %></p>
-  <p><strong>URL:</strong> <%= @source.url %></p>
-  <p><strong>Authors:</strong> <%= @source.authors %></p>
-  <p><strong>Date Published:</strong> <%= @source.date_published%></p>
-  <p><strong>Original Source:</strong> <%= @source.original_source %></p>
+<% if notice %>
+  <div class="well well-sm"><p id="notice"><%= notice %></p></div>
+<% end %>
+<h4>All of the facts were entered with the following source information:</h4>
 
-  <br>
+<p><strong>Title:</strong> <%= @source.title %></p>
+<p><strong>URL:</strong> <%= @source.url %></p>
+<p><strong>Authors:</strong> <%= @source.authors %></p>
+<p><strong>Date Published:</strong> <%= @source.date_published%></p>
+<p><strong>Original Source:</strong> <%= @source.original_source %></p>
 
-  <h4>The following facts were entered:</h4>
-  <table class="table">
-    <thead>
+<br>
+
+<h4>The following facts were entered:</h4>
+<table class="table">
+<thead>
+<tr>
+  <th>Fact</th>
+  <th>Notes</th>
+  <th>Tags</th>
+</tr>
+</thead>
+<tbody>
+<% @source.facts.each_with_index do |fact, index| %>
     <tr>
-      <th>Fact</th>
-      <th>Notes</th>
-      <th>Tags</th>
+      <td><p><%= fact.fact_text %></p></td>
+      <td><p><%= fact.notes %></p></td>
+      <td>
+        <p>
+          <% @tags_list[index].each do |tag| %>
+              <kbd><%= tag %></kbd>
+          <% end %>
+        </p>
+      </td>
     </tr>
-    </thead>
-    <tbody>
-    <% @source.facts.each_with_index do |fact, index| %>
-        <tr>
-          <td><p><%= fact.fact_text %></p></td>
-          <td><p><%= fact.notes %></p></td>
-          <td>
-            <p>
-              <% @tags_list[index].each do |tag| %>
-                  <kbd><%= tag %></kbd>
-              <% end %>
-            </p>
-          </td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
+<% end %>
+</tbody>
+</table>
 
-  <%= link_to 'Edit', edit_source_path(@source) %> |
-  <%= link_to 'Back', sources_path %>
+<%= link_to 'Edit', edit_source_path(@source) %> |
+<%= link_to 'Back', sources_path %>
 
-
-</div>
 

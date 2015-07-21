@@ -9,35 +9,35 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div id="wrapper" class="container">
-  <% if notice %>
-    <div class="well well-sm"><p id="notice"><%= notice %></p></div>
-  <% end %>
-  <h2>Tags</h2>
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Tag Word</th>
-      <th>See this tag</th>
-      <th>Edit this tag</th>
-      <th>Delete this tag</th>
-    </tr>
-    </thead>
-    <tbody>
-        <% @tags.each do |tag| %>
-            <tr>
-              <td><kbd><%= tag.tag_word %></kbd></td>
-              <td><%= link_to 'Show', tag %></td>
-              <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
-              <td><%= link_to 'Delete', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-        <% end %>
-    </tbody>
-  </table>
-  <br>
 
-  <%= link_to 'New Tag', new_tag_path %>
-</div>
+<% if notice %>
+<div class="well well-sm"><p id="notice"><%= notice %></p></div>
+<% end %>
+<h2>Tags</h2>
+<table class="table">
+<thead>
+<tr>
+  <th>Tag Word</th>
+  <th>See this tag</th>
+  <th>Edit this tag</th>
+  <th>Delete this tag</th>
+</tr>
+</thead>
+<tbody>
+    <% @tags.each do |tag| %>
+        <tr>
+          <td><kbd><%= tag.tag_word %></kbd></td>
+          <td><%= link_to 'Show', tag %></td>
+          <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
+          <td><%= link_to 'Delete', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+</tbody>
+</table>
+<br>
+
+<%= link_to 'New Tag', new_tag_path %>
+
 
 
 
