@@ -8,12 +8,50 @@ class FactsController < ApplicationController
   end
 
   def view
+    @facts = Fact.all
+    @all_tags = Tag.all
+    @all_categories = Category.all
+
+    finallist = []
+    count = 0
+    @facts.each do |fact|
+      firstlist = []
+      fact.tags.each do |tag|
+        firstlist << tag.tag_word
+      end
+      finallist[count] = firstlist
+      count = count + 1
+    end
+    @tags_list = finallist
+
+    @ac_tags_list = '['
+    @all_tags.each do |tag|
+      @ac_tags_list += "{value:" + tag.id.to_s + ",label:\'" + tag.tag_word + "\'},"
+    end
+    @ac_tags_list[-1] = ']'
+    @ac_tags_list+=';'
+
+    @ac_cats_list = '['
+    @all_categories.each do |category|
+      @ac_cats_list += "{value:" + category.id.to_s + ",label:\'" + category.category_name + "\'},"
+    end
+
+    @ac_cats_list[-1] = ']'
+    @ac_cats_list+=';'
+
 
   end
 
   # GET /facts/1
   # GET /facts/1.json
   def show
+    @fact = Fact.find(params[:id])
+    firstlist = []
+    @fact.tags.each do |tag|
+      firstlist << tag.tag_word
+    end
+    @tags_list = firstlist
+    @source = Source.find(@fact.source_id)
   end
 
   # GET /facts/new
@@ -23,6 +61,7 @@ class FactsController < ApplicationController
 
   # GET /facts/1/edit
   def edit
+    @tags_list = Tag.all
   end
 
   # POST /facts
@@ -44,7 +83,22 @@ class FactsController < ApplicationController
   # PATCH/PUT /facts/1
   # PATCH/PUT /facts/1.json
   def update
-    params[:product][:category_ids] ||= []
+    @tags_list = Tag.all
+    @fact = Fact.find(params[:id])
+    @fact.fact_text = params[:fact][:fact_text]
+    @fact.notes = params[:fact][:notes]
+    @fact.last_modified_by = current_user.name
+    @fact.tags.clear
+    tags = params[:fact][:tags_attributes]
+    Array(tags).each do |tag|
+      if tag[1][:_destroy] != "1"
+        temptag = Tag.find_by tag_word: tag[1][:tag_word]
+        if @fact.tags.include?(temptag) == false
+          @fact.tags << temptag
+        end
+      end
+    end
+
     respond_to do |format|
       if @fact.update(fact_params)
         format.html { redirect_to @fact, notice: 'Fact was successfully updated.' }
@@ -76,8 +130,9 @@ class FactsController < ApplicationController
     def fact_params
       params.require(:fact).permit(
           :fact_text,
-          :fact_notes,
-          {:tag_ids => []}
+          :notes,
+          :destroy,
+          tags_attributes: [:id, :tag_word, :_destroy]
       )
     end
 end

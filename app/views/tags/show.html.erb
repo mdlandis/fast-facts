@@ -14,9 +14,11 @@
 <p id="notice"><%= notice %></p>
 <h2>Tag #<%= @tag.id %></h2>
 
-<p>Tag Word: <%= @tag.tag_word %></p>
 
-<br>
+<strong>Tag Word:</strong> <%= @tag.tag_word %><br>
+<strong>Category:</strong> <%= @tag.category.category_name %><br><br>
+
+
 <%= link_to 'Edit', edit_tag_path(@tag) %> |
 <%= link_to 'Back', tags_path %>
 

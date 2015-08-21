@@ -35,6 +35,7 @@
   <th>Fact</th>
   <th>Notes</th>
   <th>Tags</th>
+  <th>See</th>
 </tr>
 </thead>
 <tbody>
@@ -49,12 +50,13 @@
           <% end %>
         </p>
       </td>
+      <td><%= link_to 'Show Fact', '/facts/' + fact.id.to_s %></td>
     </tr>
 <% end %>
 </tbody>
 </table>
 
 <%= link_to 'Edit', edit_source_path(@source) %> |
-<%= link_to 'Back', sources_path %>
+<A HREF="previous.html" onClick="history.back();return false;">Go back</A>
 
 

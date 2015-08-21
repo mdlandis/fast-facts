@@ -10,7 +10,6 @@
 
           <br />
 
-
           <%= f.fields_for :tags do |tag| %>
               <%= render 'tag_fields', f: tag  %>
           <% end %>
@@ -18,7 +17,7 @@
 
           <%= link_to_add_fields "Add Tag", f, :tags, class: "btn btn-xs btn-info" %><br /><hr />
 
-          <%= f.hidden_field :_destroy %>
+          <%= f.hidden_field :destroy %>
           <%= link_to "Remove fact", "#", class: "remove_fields" %>
 
       </div>

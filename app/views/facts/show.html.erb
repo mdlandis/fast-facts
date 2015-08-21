@@ -1,4 +1,26 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+    <div class="well well-sm"><p id="notice"><%= notice %></p></div>
+<% end %>
+
+<h3>Fact #<%= @fact.id %></h3>
+<% @tags_list.each do |tag| %>
+    <kbd><%= tag %></kbd>
+<% end %>
+
+<hr>
+
+<blockquote><%= @fact.fact_text %></blockquote><br>
+
+<strong>Notes:</strong> <%= @fact.notes %><br>
+
+<strong>Source:</strong> <%= link_to @source.title, '/sources/' + @source.id.to_s %><br />
+
+<strong>Entered by:</strong> <%= @fact.entered_by %> at <%= @fact.created_at %><br>
+
+<strong>Last Modified by:</strong> <%= @fact.last_modified_by %> at <%= @fact.updated_at %><br>
+
+<hr>
 
 <%= link_to 'Edit', edit_fact_path(@fact) %> |
-<%= link_to 'Back', facts_path %>
+<A HREF="previous.html" onClick="history.back();return false;">Go back</A>
+

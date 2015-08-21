@@ -264,6 +264,6 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   require "omniauth-google-oauth2"
 
-  config.omniauth :google_oauth2, "187325619632-h6t30rusofsdnm3qmia2pd8u11lki5t3.apps.googleusercontent.com", "Q1c2U63LoQu9DEMq4tbJtQrF", { access_type: "offline", approval_prompt: "" }
+  config.omniauth :google_oauth2, "187325619632-h6t30rusofsdnm3qmia2pd8u11lki5t3.apps.googleusercontent.com", "Q1c2U63LoQu9DEMq4tbJtQrF", { access_type: "offline", approval_prompt: "", hd: 'exponentialtalent.com' }
 
 end

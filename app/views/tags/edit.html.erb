@@ -21,6 +21,11 @@
     <%= f.text_field :tag_word %>
   </div>
 
+    <div class="field">
+      <%= f.label :category %><br>
+      <%= f.collection_select(:category_id, Category.all, :id, :category_name) %>
+    </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

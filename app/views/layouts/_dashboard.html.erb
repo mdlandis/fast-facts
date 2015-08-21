@@ -1,12 +1,14 @@
 <div style="background: #2ba6cb">
     <div class="container">
         <h4 style="padding: 15px;">
-            Useful links for Data Entry:
+            Useful links:
+            <%= link_to 'View Facts', '/facts/view', "data-no-turbolink" => true %> |
             <%= link_to 'Fact Entry', '/sources/new' %> |
             <%= link_to 'Create Tags', '/tags/new' %> |
-            <%= link_to 'See Facts', '/facts' %> |
-            <%= link_to 'See Tags', '/tags' %> |
-            <%= link_to 'See Sources', '/sources' %> |
+            <%= link_to 'Manage Facts', '/facts' %> |
+            <%= link_to 'Manage Tags', '/tags' %> |
+            <%= link_to 'Manage Categories', '/categories' %> |
+            <%= link_to 'Manage Sources', '/sources' %> |
             <%= link_to 'Sign out', '/users/sign_out', :method => "delete" %>
         </h4>
     </div>

@@ -1,17 +1,20 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :registrations => "my_devise/registrations" }
+  resources :categories
+  devise_for :users, :controllers => { :registrations => "users/registrations", :sessions => "users/sessions", :omniauth_callbacks => "omniauth_callbacks" }
 
-  authenticate :user do
-    resources :facts, only: [:new, :create, :edit, :update, :destroy]
-    resources :tags, only: [:new, :create, :edit, :update, :destroy]
-    resources :sources, only: [:new, :create, :edit, :update, :destroy]
-  end
-  resources :facts, only: [:show, :index]
-  resources :tags, only: [:show, :index]
-  resources :sources, only: [:show, :index]
 
   get 'facts/view', :to => 'facts#view'
+
+  authenticate :user do
+    resources :facts, only: [:create, :edit, :new, :update, :destroy, :index]
+    resources :tags
+    resources :sources
+  end
+
+  resources :facts, only: [:show]
+
+
 
   root 'facts#view'
 

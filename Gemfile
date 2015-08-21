@@ -27,9 +27,18 @@ gem 'cocoon'
 
 gem 'bootstrap-typeahead-rails'
 
+gem 'bootstrap-sass', '~> 3.2.0'
+
+gem 'autoprefixer-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
+gem 'jquery-ui-rails'
+
+gem 'jquery-datatables-rails'
+
+gem 'typeahead-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -38,6 +47,16 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rails_12factor'
+
+gem 'kaminari'
+
+gem 'font-awesome-rails'
+
+gem 'foundation-rails'
+
+gem 'turbolinks'
+
+gem 'jquery-turbolinks'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

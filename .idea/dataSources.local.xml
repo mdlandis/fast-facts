@@ -12,7 +12,6 @@
     </data-source>
     <data-source name="Rails FastFacts: production" uuid="ad0985f6-83ac-4a49-8704-0cb1c2f4710e">
       <first-sync>true</first-sync>
-      <user-name>saasbook</user-name>
     </data-source>
   </component>
 </project>

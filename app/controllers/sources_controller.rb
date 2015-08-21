@@ -28,6 +28,7 @@ class SourcesController < ApplicationController
   def new
     @source = Source.new
     @tags_list = Tag.all
+
   end
 
   # GET /sources/1/edit
@@ -47,15 +48,23 @@ class SourcesController < ApplicationController
     facts = source_params[:facts_attributes]
 
     Array(facts).each do |fact|
-      tempfact = Fact.new
-      tempfact.fact_text = fact[1][:fact_text]
-      tempfact.notes = fact[1][:notes]
-      tags = fact[1][:tags_attributes]
-      Array(tags).each do |tag|
-        temptag = Tag.find_by tag_word: tag[1][:tag_word]
-        tempfact.tags << temptag
+      if fact[1][:destroy] != "1"
+        tempfact = Fact.new
+        tempfact.fact_text = fact[1][:fact_text]
+        tempfact.notes = fact[1][:notes]
+        tempfact.entered_by = current_user.name
+        tempfact.last_modified_by = current_user.name
+        tags = fact[1][:tags_attributes]
+        Array(tags).each do |tag|
+          if tag[1][:destroy] != "1"
+            temptag = Tag.find_by tag_word: tag[1][:tag_word]
+            if tempfact.tags.include?(temptag) == false
+              tempfact.tags << temptag
+            end
+          end
+        end
+        @source.facts << tempfact
       end
-      @source.facts << tempfact
     end
 
 
@@ -111,7 +120,7 @@ class SourcesController < ApplicationController
           :authors,
           :date_published,
           :original_source,
-          facts_attributes: [:fact_text, :notes, tags_attributes: [:tag_word]]
+          facts_attributes: [:fact_text, :notes, :destroy, tags_attributes: [:tag_word, :destroy]]
       )
     end
 end
