@@ -1,19 +1,17 @@
 $(document).ready(function () {
     $('#mycategories').hide();
     $('#mytags').hide();
-    $('#andordiv').hide();
     $('#sort_by_tags').hide();
     $('#sort_by_titles').hide();
     $('#sort_by_dates').hide();
     $('#tag_button').bind('click', function() {
         $('#mytags').show();
         $('#mycategories').hide();
-        $('#andordiv').slideDown();
     });
     $('#category_button').bind('click', function() {
         $('#mytags').hide();
         $('#mycategories').show();
-        $('#andordiv').slideUp();
+
 
 
     });
