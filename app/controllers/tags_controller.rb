@@ -3,8 +3,26 @@ class TagsController < ApplicationController
 
   # GET /tags
   # GET /tags.json
+
+  def tag_alphabetize(a, b)
+    ss = a.category.category_name.downcase <=> b.category.category_name.downcase
+    if ss == 1
+      return 1
+    elsif ss == -1
+      return -1
+    else
+      return a.tag_word.downcase <=> b.tag_word.downcase
+    end
+  end
+
+
   def index
-    @tags = Tag.all
+    tags = Tag.all
+    @tags = []
+    tags.each do |tag|
+      @tags << tag
+    end
+    @tags.sort! { |a,b| tag_alphabetize(a,b) }
   end
 
   # GET /tags/1

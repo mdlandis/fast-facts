@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap-sprockets
 //= require searchtoggle
 //= require jquery.tokenize
 //= require_tree .

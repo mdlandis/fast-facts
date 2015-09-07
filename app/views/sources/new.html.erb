@@ -7,12 +7,18 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link href="http://aehlke.github.com/tag-it/css/jquery.tagit.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
 </head>
 <body>
 
         <h1>Fact Entry</h1>
         <hr>
         <h4>Enter Source Info</h4>
+
+
 
       <%= form_for @source do |f| %>
 
@@ -41,6 +47,9 @@
           <%= f.select :original_source, Source::ORIG_SOURCE_OPTIONS.map { |s| "#{s}" } %>
         </p>
 
+        <h4>OR use an existing source:</h4>
+        <%= select_tag "existing_source", options_from_collection_for_select(@sources, "id", "title"), prompt: "Select Source" %>
+
         <hr>
 
           <h4>Add facts to this source</h4>
@@ -53,7 +62,7 @@
 
         <br>
         <hr>
-        <p><%= f.submit %></p>
+        <p><%= f.submit 'Submit Facts' %></p>
       <% end %>
 
       <%= link_to 'Back', sources_path %>

@@ -27,7 +27,15 @@ class SourcesController < ApplicationController
   # GET /sources/new
   def new
     @source = Source.new
+    @sources = Source.all
+    @all_facts = Fact.all
     @tags_list = Tag.all
+
+    @ac_tags_list = []
+
+    @tags_list.each do |tag|
+      @ac_tags_list << tag.tag_word
+    end
 
   end
 
@@ -40,15 +48,20 @@ class SourcesController < ApplicationController
   def create
     # @source = Source.new(source_params)
     @source = Source.new
-    @source.url = source_params[:url]
-    @source.title = source_params[:title]
-    @source.authors = source_params[:authors]
-    @source.date_published = source_params[:date_published]
-    @source.original_source = source_params[:original_source]
+    if params[:existing_source] != ""
+      @source = Source.find(params[:existing_source])
+    else
+      @source.url = source_params[:url]
+      @source.title = source_params[:title]
+      @source.authors = source_params[:authors]
+      @source.date_published = source_params[:date_published]
+      @source.original_source = source_params[:original_source]
+    end
+
     facts = source_params[:facts_attributes]
 
     Array(facts).each do |fact|
-      if fact[1][:destroy] != "1"
+      if fact[1][:destroy] != "1" and fact[1][:fact_text] != ""
         tempfact = Fact.new
         tempfact.fact_text = fact[1][:fact_text]
         tempfact.notes = fact[1][:notes]
