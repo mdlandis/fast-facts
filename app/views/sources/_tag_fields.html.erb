@@ -1,7 +1,7 @@
 <script>
     $(function() {
         var tags_list = <%= raw @ac_tags_list %>;
-        $( "#tags" ).autocomplete({
+        $( ".acclass" ).autocomplete({
             source: tags_list
         });
     });
@@ -9,7 +9,7 @@
 <fieldset>
   <div class="ui-widget">
     <label for="tags">Tag: </label>
-    <%= f.text_field :tag_word, :id => "tags" %>
+    <%= f.text_field :tag_word, :id => "tags", :class => "acclass" %>
   </div>
   <%= f.hidden_field :destroy %>
   <%= link_to "Remove", "#", class: "remove_fields" %><br /><br />
