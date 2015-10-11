@@ -9,18 +9,16 @@
     <table class="table">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Fact</th>
-          <th>See</th>
-          <th>Edit</th>
-          <th>Delete</th>
+          <th class="col-md-9">Fact</th>
+          <th class="col-md-1">See</th>
+          <th class="col-md-1">Edit</th>
+          <th class="col-md-1">Delete</th>
         </tr>
       </thead>
 
       <tbody>
         <% @facts.each do |fact| %>
           <tr>
-            <td>#<%= fact.id %></td>
             <td><%= fact.fact_text%></td>
             <td><%= link_to 'Show', fact %></td>
             <td><%= link_to 'Edit', edit_fact_path(fact) %></td>
