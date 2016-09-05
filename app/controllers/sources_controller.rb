@@ -36,6 +36,8 @@ class SourcesController < ApplicationController
     @tags_list.each do |tag|
       @ac_tags_list << tag.tag_word
     end
+    # Sort tags for autocomplete
+    @ac_tags_list.sort_by!{|t| t}
 
   end
 
