@@ -178,6 +178,7 @@ class FactsController < ApplicationController
     @tags_list = Tag.all
     @fact = Fact.find(params[:id])
     @fact.fact_text = params[:fact][:fact_text]
+    @fact.page = params[:fact][:page]
     @fact.notes = params[:fact][:notes]
     @fact.last_modified_by = current_user.name
     @fact.tags.clear
@@ -192,8 +193,16 @@ class FactsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to @fact, notice: 'Fact was successfully updated.' }
-      format.json { render :show, status: :ok, location: @fact }
+      # Added by RB because updating wasn't working at all
+      if @fact.update(fact_params)
+        format.html { redirect_to @fact, notice: 'Fact was successfully updated.' }
+        format.json { render :show, status: :ok, location: @fact }
+      else
+        format.html { render :edit }
+        format.json { render json: @fact.errors, status: :unprocessable_entity }
+      end
+
+
     end
   end
 
@@ -217,6 +226,7 @@ class FactsController < ApplicationController
     def fact_params
       params.require(:fact).permit(
           :fact_text,
+          :page,
           :notes,
           :destroy,
           tags_attributes: [:id, :tag_word, :_destroy]

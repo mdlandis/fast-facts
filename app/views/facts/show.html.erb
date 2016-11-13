@@ -11,6 +11,8 @@
 
 <blockquote><%= @fact.fact_text %></blockquote><br>
 
+<strong>Page:</strong> <%= @fact.page %><br>
+
 <strong>Notes:</strong> <%= @fact.notes %><br>
 
 <strong>Source:</strong> <%= link_to @source.title, '/sources/' + @source.id.to_s %><br />

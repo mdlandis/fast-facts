@@ -66,6 +66,7 @@ class SourcesController < ApplicationController
       if fact[1][:destroy] != "1" and fact[1][:fact_text] != ""
         tempfact = Fact.new
         tempfact.fact_text = fact[1][:fact_text]
+        tempfact.page = fact[1][:page]
         tempfact.notes = fact[1][:notes]
         tempfact.entered_by = current_user.name
         tempfact.last_modified_by = current_user.name
@@ -135,7 +136,7 @@ class SourcesController < ApplicationController
           :authors,
           :date_published,
           :original_source,
-          facts_attributes: [:fact_text, :notes, :destroy, tags_attributes: [:tag_word, :destroy]]
+          facts_attributes: [:fact_text, :page, :notes, :destroy, tags_attributes: [:tag_word, :destroy]]
       )
     end
 end
