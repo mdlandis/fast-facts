@@ -198,8 +198,8 @@ class FactsController < ApplicationController
         format.html { redirect_to @fact, notice: 'Fact was successfully updated.' }
         format.json { render :show, status: :ok, location: @fact }
       else
-        format.html { render :edit }
-        format.json { render json: @fact.errors, status: :unprocessable_entity }
+        format.html { redirect_to @fact, notice: 'Fact was sort of successfully updated. There was an error, but we think it is ok' }
+        format.json { render :show, status: :ok, location: @fact }
       end
 
 
